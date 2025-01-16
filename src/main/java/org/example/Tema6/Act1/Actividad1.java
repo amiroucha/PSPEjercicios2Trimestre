@@ -1,4 +1,4 @@
-package org.example.T6Act1;
+package org.example.Tema6.Act1;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;

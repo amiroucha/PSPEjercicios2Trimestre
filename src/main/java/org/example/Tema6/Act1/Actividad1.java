@@ -147,7 +147,8 @@ public class Actividad1 {
                 "código postal en España que empiece por 53 o superior.");
         String cliente = scanner.nextLine();
         try {
-            Pattern pat = Pattern.compile("[1-5][0-2][-d]{3}");
+            Pattern pat = Pattern.compile("([0-4][0-9]|5[0-2])[0-9]{3}\n");
+            //otra forma: ([0-4]\\d{4}|5[0-2]\\d{3})
             Matcher mat = pat.matcher(cliente);
 
             //Si buscamos coincidencia exacta --> matches()

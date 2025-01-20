@@ -1,0 +1,168 @@
+11:55:56.839 [Cliente 1] WARN  - El servidor ha ganado a : --> Cliente 1
+11:56:05.425 [Cliente 2] WARN  - Cliente 2: --> pierde por jugada inválida. Fin de la partida
+11:56:38.001 [Cliente 1] WARN  - Cliente 1: --> pierde por jugada inválida. Fin de la partida
+11:56:58.153 [Cliente 2] WARN  - Cliente 2: --> pierde por jugada inválida. Fin de la partida
+11:57:08.080 [Cliente 3] WARN  - Cliente 3Gano el jugador 
+11:59:11.134 [Cliente 1] ERROR - Error con el cliente : -->Cliente 1
+11:59:11.137 [Cliente 1] ERROR - Connection reset
+11:59:17.939 [Cliente 2] WARN  - Cliente 2: --> pierde por jugada inválida. Fin de la partida
+11:59:51.961 [Cliente 3] WARN  - Cliente 3Gano el jugador 
+12:00:58.955 [main] INFO  - Escucho al puerto 2000
+12:01:01.149 [main] INFO  - Soy el servidorTCP esperando a que alguien se conecte
+12:01:01.150 [Cliente 1] INFO  - Se ha conectado un nuevo jugador!! -->  Cliente 1
+12:01:01.154 [Cliente 1] INFO  - Cliente 1:-->
+- - - - 
+- - - - 
+- - - - 
+
+12:01:11.165 [Cliente 1] INFO  - Cliente 1:--> Seguimos jugando
+12:01:11.165 [Cliente 1] INFO  - Cliente 1:--> ha elegido la columna: 2
+12:01:11.165 [Cliente 1] INFO  - Cliente 1:--> Despues de la jugada del cliente
+- - - - 
+- - - - 
+- - X - 
+
+12:01:11.166 [Cliente 1] INFO  - Cliente 1: Despues de la jugada del servidor: 1
+- - - - 
+- - - - 
+- O X - 
+
+12:01:11.944 [Cliente 1] INFO  - Cliente 1:--> Seguimos jugando
+12:01:11.944 [Cliente 1] INFO  - Cliente 1:--> ha elegido la columna: 3
+12:01:11.944 [Cliente 1] INFO  - Cliente 1:--> Despues de la jugada del cliente
+- - - - 
+- - - - 
+- O X X 
+
+12:01:11.944 [Cliente 1] INFO  - Cliente 1: Despues de la jugada del servidor: 3
+- - - - 
+- - - O 
+- O X X 
+
+12:01:12.640 [Cliente 1] INFO  - Cliente 1:--> Seguimos jugando
+12:01:12.641 [Cliente 1] INFO  - Cliente 1:--> ha elegido la columna: 1
+12:01:12.641 [Cliente 1] INFO  - Cliente 1:--> Despues de la jugada del cliente
+- - - - 
+- X - O 
+- O X X 
+
+12:01:12.641 [Cliente 1] INFO  - Cliente 1: Despues de la jugada del servidor: 3
+- - - O 
+- X - O 
+- O X X 
+
+12:01:13.865 [Cliente 1] INFO  - Cliente 1:--> Seguimos jugando
+12:01:13.866 [Cliente 1] INFO  - Cliente 1:--> ha elegido la columna: 0
+12:01:13.866 [Cliente 1] INFO  - Cliente 1:--> Despues de la jugada del cliente
+- - - O 
+- X - O 
+X O X X 
+
+12:01:13.866 [Cliente 1] INFO  - Cliente 1: Despues de la jugada del servidor: 0
+- - - O 
+O X - O 
+X O X X 
+
+12:01:14.375 [Cliente 1] INFO  - Cliente 1:--> Seguimos jugando
+12:01:14.375 [Cliente 1] INFO  - Cliente 1:--> ha elegido la columna: 2
+12:01:14.375 [Cliente 1] INFO  - Cliente 1:--> Despues de la jugada del cliente
+- - - O 
+O X X O 
+X O X X 
+
+12:01:14.375 [Cliente 1] INFO  - Cliente 1: Despues de la jugada del servidor: 1
+- O - O 
+O X X O 
+X O X X 
+
+12:01:15.451 [Cliente 1] INFO  - Cliente 1:--> Seguimos jugando
+12:01:15.451 [Cliente 1] INFO  - Cliente 1:--> ha elegido la columna: 0
+12:01:15.452 [Cliente 1] INFO  - Cliente 1:--> Despues de la jugada del cliente
+X O - O 
+O X X O 
+X O X X 
+
+12:01:15.452 [Cliente 1] INFO  - Cliente 1:-->
+X O - O 
+O X X O 
+X O X X 
+
+12:01:15.452 [Cliente 1] WARN  - Cliente 1Gano el jugador 
+12:01:32.486 [main] INFO  - Soy el servidorTCP esperando a que alguien se conecte
+12:01:32.487 [Cliente 2] INFO  - Se ha conectado un nuevo jugador!! -->  Cliente 2
+12:01:32.488 [Cliente 2] INFO  - Cliente 2:-->
+- - - - 
+- - - - 
+- - - - 
+
+12:01:34.519 [Cliente 2] INFO  - Cliente 2:--> Seguimos jugando
+12:01:34.519 [Cliente 2] INFO  - Cliente 2:--> ha elegido la columna: 2
+12:01:34.519 [Cliente 2] INFO  - Cliente 2:--> Despues de la jugada del cliente
+- - - - 
+- - - - 
+- - X - 
+
+12:01:34.520 [Cliente 2] INFO  - Cliente 2: Despues de la jugada del servidor: 2
+- - - - 
+- - O - 
+- - X - 
+
+12:01:34.965 [Cliente 2] INFO  - Cliente 2:--> Seguimos jugando
+12:01:34.965 [Cliente 2] INFO  - Cliente 2:--> ha elegido la columna: 1
+12:01:34.965 [Cliente 2] INFO  - Cliente 2:--> Despues de la jugada del cliente
+- - - - 
+- - O - 
+- X X - 
+
+12:01:34.966 [Cliente 2] INFO  - Cliente 2: Despues de la jugada del servidor: 0
+- - - - 
+- - O - 
+O X X - 
+
+12:01:35.936 [Cliente 2] INFO  - Cliente 2:--> Seguimos jugando
+12:01:35.936 [Cliente 2] INFO  - Cliente 2:--> ha elegido la columna: 0
+12:01:35.936 [Cliente 2] INFO  - Cliente 2:--> Despues de la jugada del cliente
+- - - - 
+X - O - 
+O X X - 
+
+12:01:35.936 [Cliente 2] INFO  - Cliente 2: Despues de la jugada del servidor: 0
+O - - - 
+X - O - 
+O X X - 
+
+12:01:36.717 [Cliente 2] INFO  - Cliente 2:--> Seguimos jugando
+12:01:36.717 [Cliente 2] INFO  - Cliente 2:--> ha elegido la columna: 2
+12:01:36.717 [Cliente 2] INFO  - Cliente 2:--> Despues de la jugada del cliente
+O - X - 
+X - O - 
+O X X - 
+
+12:01:36.718 [Cliente 2] INFO  - Cliente 2: Despues de la jugada del servidor: 3
+O - X - 
+X - O - 
+O X X O 
+
+12:01:37.226 [Cliente 2] INFO  - Cliente 2:--> Seguimos jugando
+12:01:37.226 [Cliente 2] INFO  - Cliente 2:--> ha elegido la columna: 1
+12:01:37.226 [Cliente 2] INFO  - Cliente 2:--> Despues de la jugada del cliente
+O - X - 
+X X O - 
+O X X O 
+
+12:01:37.226 [Cliente 2] INFO  - Cliente 2: Despues de la jugada del servidor: 1
+O O X - 
+X X O - 
+O X X O 
+
+12:01:37.227 [Cliente 2] WARN  - El servidor ha ganado a : --> Cliente 2
+12:01:41.278 [main] INFO  - Soy el servidorTCP esperando a que alguien se conecte
+12:01:41.278 [Cliente 3] INFO  - Se ha conectado un nuevo jugador!! -->  Cliente 3
+12:01:41.279 [Cliente 3] INFO  - Cliente 3:-->
+- - - - 
+- - - - 
+- - - - 
+
+12:01:42.350 [Cliente 3] INFO  - Cliente 3:--> Seguimos jugando
+12:01:42.350 [Cliente 3] INFO  - Cliente 3:--> ha elegido la columna: 5
+12:01:42.350 [Cliente 3] WARN  - Cliente 3: --> pierde por jugada inválida. Fin de la partida

@@ -1,4 +1,4 @@
-package org.example.Tema5.URLHttpUrl.Ejemplos.FTP;//librerías de apache para FTP
+package org.example.Tema5.FTP.Ejemplos.FTP;//librerías de apache para FTP
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 

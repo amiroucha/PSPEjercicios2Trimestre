@@ -46,6 +46,10 @@ public class FTPCliente {
                 }
                 //me quedo en comprobar lo del directorio y si no crearlo
                 //me falta listar el contenido como pde mariajo
+
+
+
+
             } else {
                 //desconecta
                 clienteFTP.disconnect();

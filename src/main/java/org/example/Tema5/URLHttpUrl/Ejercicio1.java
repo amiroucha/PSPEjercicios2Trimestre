@@ -5,7 +5,7 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
-
+//esta tarea si la tengo taasteada
 public class Ejercicio1 {
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
@@ -31,6 +31,7 @@ public class Ejercicio1 {
             System.out.println("Referencia = " + url.getRef());
 
             System.out.println("----------------------- Informacion de las cabeceras -----------------------" );
+
             //obtiene una conexión al recurso URL
             URLConnection conexion = url.openConnection();
             System.out.println("Content Type: " + conexion.getContentType());
@@ -47,7 +48,5 @@ public class Ejercicio1 {
         } catch (IOException e) {
             System.err.println("Error al obtener el IP del dominio: "+e.getMessage());
         }
-
-
     }
 }

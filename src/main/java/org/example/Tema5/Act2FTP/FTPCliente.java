@@ -1,4 +1,4 @@
-package org.example.Tema5.FTP;
+package org.example.Tema5.Act2FTP;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;

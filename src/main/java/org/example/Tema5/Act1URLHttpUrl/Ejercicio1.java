@@ -1,4 +1,4 @@
-package org.example.Tema5.URLHttpUrl;
+package org.example.Tema5.Act1URLHttpUrl;
 
 import java.io.IOException;
 import java.net.InetAddress;

@@ -1,4 +1,4 @@
-package org.example.Tema5.URLHttpUrl.Ejemplos.Cabeceras;
+package org.example.Tema5.Act1URLHttpUrl.Ejemplos.Cabeceras;
 
 import java.io.*;
 import java.net.MalformedURLException;

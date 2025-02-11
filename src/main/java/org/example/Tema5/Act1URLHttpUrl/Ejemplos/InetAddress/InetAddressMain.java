@@ -1,4 +1,4 @@
-package org.example.Tema5.URLHttpUrl.Ejemplos.InetAddress;
+package org.example.Tema5.Act1URLHttpUrl.Ejemplos.InetAddress;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

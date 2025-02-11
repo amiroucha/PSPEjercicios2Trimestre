@@ -1,4 +1,4 @@
-package org.example.Tema5.URLHttpUrl.Ejemplos.HttpURLConnection;
+package org.example.Tema5.Act1URLHttpUrl.Ejemplos.HttpURLConnection;
 
 import java.io.BufferedReader;
 import java.io.IOException;

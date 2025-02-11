@@ -33,6 +33,12 @@
             <artifactId>commons-net</artifactId>
             <version>3.9.0</version>
         </dependency>
+        <!-- Dependencia para el correo -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
 
     </dependencies>
 </project>

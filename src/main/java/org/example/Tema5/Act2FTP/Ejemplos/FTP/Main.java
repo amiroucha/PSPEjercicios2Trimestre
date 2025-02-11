@@ -1,11 +1,9 @@
-package org.example.Tema5.FTP.Ejemplos.FTP;//librerías de apache para FTP
+package org.example.Tema5.Act2FTP.Ejemplos.FTP;//librerías de apache para FTP
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPReply;
 
 //librerías de java
-import java.io.IOException;
 import java.io.FileOutputStream;
-import java.net.SocketException;
+
 public class Main {
     //objeto de la clase FTPClient de Apache, con diversos métodos para interactuar y recuperar un archivo de un servidor FTP
     private static FTPClient clienteFTP;

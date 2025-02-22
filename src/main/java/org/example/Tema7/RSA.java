@@ -61,17 +61,8 @@ public class RSA {
             System.out.println("Texto DESCIFRADO");
             mostrarBytes(bufferClaro);//muestra texto descifrado
 
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(RSA.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchPaddingException ex) {
-            Logger.getLogger(RSA.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidKeyException ex) {
-            Logger.getLogger(RSA.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalBlockSizeException ex) {
-            Logger.getLogger(RSA.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (BadPaddingException ex) {
-            Logger.getLogger(RSA.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException |
+                 BadPaddingException | IOException ex) {
             Logger.getLogger(RSA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

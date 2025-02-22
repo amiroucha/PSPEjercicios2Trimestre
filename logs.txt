@@ -1,0 +1,36 @@
+feb 22, 2025 9:34:20 P. M. org.example.EjemploGlobal.Main main
+ADVERTENCIA: Nombre de archivo no válido: fot1.png
+feb 22, 2025 9:36:52 P. M. org.example.EjemploGlobal.Main main
+ADVERTENCIA: Nombre de archivo no válido: foto-1.png
+feb 22, 2025 9:37:25 P. M. org.example.EjemploGlobal.Main main
+INFORMACIÓN: Archivo válido: foto-1.png
+feb 22, 2025 9:37:25 P. M. org.example.EjemploGlobal.Main downloadFromFTP
+INFORMACIÓN: Archivo descargado desde FTP: foto-1.png
+feb 22, 2025 9:37:25 P. M. org.example.EjemploGlobal.Main signFile
+INFORMACIÓN: Archivo firmado correctamente.
+feb 22, 2025 9:37:27 P. M. org.example.EjemploGlobal.Main main
+GRAVE: Error en la ejecución: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-439b02d854csm56514915e9.15 - gsmtp
+
+feb 22, 2025 9:52:40 P. M. org.example.EjemploGlobal.Main main
+INFORMACIÓN: Archivo válido: foto-1.png
+feb 22, 2025 9:52:41 P. M. org.example.EjemploGlobal.Main downloadFromFTP
+INFORMACIÓN: Archivo descargado desde FTP: foto-1.png
+feb 22, 2025 9:52:41 P. M. org.example.EjemploGlobal.Main signFile
+INFORMACIÓN: Archivo firmado correctamente.
+feb 22, 2025 9:52:42 P. M. org.example.EjemploGlobal.Main main
+GRAVE: Error en la ejecución: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-439b02e489esm56909865e9.21 - gsmtp
+
+feb 22, 2025 9:57:30 P. M. org.example.EjemploGlobal.Main main
+ADVERTENCIA: Nombre de archivo no válido: ActividadXSD-3.pdf
+feb 22, 2025 10:01:50 P. M. org.example.EjemploGlobal.Main main
+INFORMACIÓN: Archivo válido: documento-1.txt
+feb 22, 2025 10:01:50 P. M. org.example.EjemploGlobal.Main downloadFromFTP
+INFORMACIÓN: Archivo descargado desde FTP: documento-1.txt
+feb 22, 2025 10:01:50 P. M. org.example.EjemploGlobal.Main signFile
+INFORMACIÓN: Archivo firmado correctamente.
+feb 22, 2025 10:01:52 P. M. org.example.EjemploGlobal.Main main
+GRAVE: Error en la ejecución: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-38f6bfbe8efsm6543800f8f.46 - gsmtp
+

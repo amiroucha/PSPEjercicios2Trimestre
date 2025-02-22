@@ -166,3 +166,4 @@ O X X O
 12:01:42.350 [Cliente 3] INFO  - Cliente 3:--> Seguimos jugando
 12:01:42.350 [Cliente 3] INFO  - Cliente 3:--> ha elegido la columna: 5
 12:01:42.350 [Cliente 3] WARN  - Cliente 3: --> pierde por jugada inválida. Fin de la partida
+20:06:47.807 [main] WARN  - Nombre de fichero NO valido: PEPE.TXT

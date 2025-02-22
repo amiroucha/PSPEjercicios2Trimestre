@@ -36,6 +36,7 @@ public class FTPCliente {
                     System.out.println("Listo los directorios disponibles");
                     System.out.println("Lista de directorios accesibles:");
                     FTPFile[] archivosRaizDisponible = clienteFTP.listFiles();
+                    System.out.println("Respuesta Servidor "+clienteFTP.getReplyString());
                     for (FTPFile archivo : archivosRaizDisponible) {
                         if (archivo.isDirectory()) {
                             System.out.println("📂 " + archivo.getName());
@@ -56,13 +57,16 @@ public class FTPCliente {
                     }
 
                     clienteFTP.changeWorkingDirectory(directorio);
+                    System.out.println("Respuesta Servidor "+clienteFTP.getReplyString());
                     System.out.println("Contenido del directorio " + directorio + ":");
 
                     FTPFile[] archivos = clienteFTP.listFiles();
+                    System.out.println("Respuesta Servidor "+clienteFTP.getReplyString());
                     for (FTPFile archivo : archivos) {
                         System.out.println(archivo.getName());
                     }
                     //cerrar sesion del usuario
+                    System.out.println("Respuesta Servidor "+clienteFTP.getReplyString());
                     clienteFTP.logout();
                 }else{
                     System.out.println(clienteFTP.getReplyString()); //imprime la respuesta del servidor

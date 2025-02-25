@@ -8,106 +8,104 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-
+//HTTP URL CONNECTION . GET . POST
 public class Ejercicio2 {
-    // Definimos un User-Agent para que el servidor nos identifique como un navegador real
-    private static final String USER_AGENT = "Mozilla/5.0";
-    /*CAMBIA ESTA URL*/
-    private static final String GET_URL = "http://localhost/ejemplo/actionGET.php?userName=mariajo";
-    /*CAMBIA ESTA URL*/
-    private static final String POST_URL = "http://localhost/ejemplo/actionPOST.php";
-    //parametros que se enviaran en el metodo post
-    private static final String POST_PARAMS = "userName=mariajo";
 
-    public static void main(String[] args) {
+    public class Main {
+        private static final String USER_AGENT = "Mozilla/5.0";
 
-        try {
-            System.out.println("-------------------------------------");
-            System.out.println("----------------GET------------------");
-            System.out.println("-------------------------------------");
-            sendGET(); //Ejemplo con GET
-            System.out.println("-------------------------------------");
-            System.out.println("----------------POST------------------");
-            System.out.println("-------------------------------------");
-            sendPOST(); //Ejemplo con POST
-        } catch (IOException ex) {
-            System.err.println(ex.getStackTrace());
-        }
-    }
+        // Asegúrate de que la URL apunta a la ubicación correcta en tu servidor local.
+        // Por ejemplo, si tienes los archivos en C:\xampp\htdocs\EjemploPHP,
+        // la URL debería ser similar a:
+        // http://localhost/EjemploPHP/actionGET.php?userName=chai&clave=1234
+        private static final String GET_URL = "http://localhost/EjemploPHP/actionGET.php?userName=chai&clave=1234";
 
-    private static void sendGET() throws IOException {
-        URL obj = new URL(GET_URL);
-        //abre una conexion http
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        //especifica el metodo a usar
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);// Agregar la cabecera User-Agent
-        // Obtener el código de respuesta HTTP
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code : " + responseCode);
-        System.out.println("GET Response Message : "+con.getResponseMessage());
+        // Similar para el POST: se recomienda colocar los archivos PHP en la carpeta pública.
+        private static final String POST_URL = "http://localhost/EjemploPHP/actionPOST.php";
 
-        //Para imprimir todas las cabeceras
-        for (Map.Entry<String, List<String>> header : con.getHeaderFields().entrySet()) {
-            System.out.println(header.getKey() + "=" + header.getValue());
-        }
-        System.out.println("Imprimo la respuesta");
-        if (responseCode == HttpURLConnection.HTTP_OK) { // success
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+        // Se añaden ambos parámetros separados por "&"
+        private static final String POST_PARAMS = "userName=chai&clave=1234";
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+        public static void main(String[] args) {
+            try {
+                System.out.println("-------------------------------------");
+                System.out.println("----------------GET------------------");
+                System.out.println("-------------------------------------");
+                sendGET(); // Ejemplo con GET
+                System.out.println("-------------------------------------");
+                System.out.println("----------------POST-----------------");
+                System.out.println("-------------------------------------");
+                sendPOST(); // Ejemplo con POST
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
-            in.close();
-
-            // print result
-            System.out.println(response.toString());
-        } else {
-            System.out.println("GET request not worked");
         }
 
-    }
+        private static void sendGET() throws IOException {
+            URL url = new URL(GET_URL);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("User-Agent", USER_AGENT);
 
-    private static void sendPOST() throws IOException {
-        URL obj = new URL(POST_URL);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", USER_AGENT);
+            int responseCode = con.getResponseCode();
+            System.out.println("GET Response Code : " + responseCode);
+            System.out.println("GET Response Message : " + con.getResponseMessage());
 
-        // For POST only - START: Habilitar el envío de datos en el cuerpo de la petición
-        con.setDoOutput(true);
-
-        // Enviar los parámetros en el cuerpo de la solicitud POST
-        OutputStream os = con.getOutputStream();
-        os.write(POST_PARAMS.getBytes());// Convertir el string en bytes
-        os.flush();// Asegurar que los datos se envían
-        os.close();// Cerrar el flujo de salida
-        // For POST only - END
-
-        // Obtener el código de respuesta HTTP
-        int responseCode = con.getResponseCode();
-        System.out.println("POST Response Code :: " + responseCode);
-        System.out.println("POST Response Message : "+con.getResponseMessage());
-
-        //Para imprimir todas las cabeceras
-        for (Map.Entry<String, List<String>> header : con.getHeaderFields().entrySet()) {
-            System.out.println(header.getKey() + "=" + header.getValue());
-        }
-        System.out.println("Imprimo la respuesta");
-        if (responseCode == HttpURLConnection.HTTP_OK) { //success
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            // Imprimir cabeceras
+            for (Map.Entry<String, List<String>> header : con.getHeaderFields().entrySet()) {
+                System.out.println(header.getKey() + " = " + header.getValue());
             }
-            in.close();
-            System.out.println(response.toString());
-        } else {
-            System.out.println("POST request not worked");
+
+            System.out.println("Imprimo la respuesta:");
+            if (responseCode == HttpURLConnection.HTTP_OK) { // éxito
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                System.out.println(response.toString());
+            } else {
+                System.out.println("GET request not worked");
+            }
+        }
+
+        private static void sendPOST() throws IOException {
+            URL url = new URL(POST_URL);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("User-Agent", USER_AGENT);
+
+            // Habilitar envío de datos para POST
+            con.setDoOutput(true);
+            OutputStream os = con.getOutputStream();
+            os.write(POST_PARAMS.getBytes());
+            os.flush();
+            os.close();
+
+            int responseCode = con.getResponseCode();
+            System.out.println("POST Response Code :: " + responseCode);
+            System.out.println("POST Response Message : " + con.getResponseMessage());
+
+            // Imprimir cabeceras
+            for (Map.Entry<String, List<String>> header : con.getHeaderFields().entrySet()) {
+                System.out.println(header.getKey() + " = " + header.getValue());
+            }
+
+            System.out.println("Imprimo la respuesta:");
+            if (responseCode == HttpURLConnection.HTTP_OK) { // éxito
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                System.out.println(response.toString());
+            } else {
+                System.out.println("POST request not worked");
+            }
         }
     }
 

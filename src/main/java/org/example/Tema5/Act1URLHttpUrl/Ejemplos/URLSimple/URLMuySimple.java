@@ -20,7 +20,6 @@ public class URLMuySimple {
             //Puedes ver otros ficheros para probar -->  http://ftp.rediris.es
             URL url = new URL("http://ftp.rediris.es/sites/apache.org/favicon.ico");
 
-
             System.out.println("protocol = " + url.getProtocol());
             System.out.println("host = " + url.getHost());
             System.out.println("filename = " + url.getFile());
@@ -28,25 +27,36 @@ public class URLMuySimple {
             System.out.println("ref = " + url.getRef());//En este caso no tiene "anchor"
 
 
+            //Descargar un Archivo desde una URL------------------------------------------
+
 
             //conecta a esa URL
+            // Abre un flujo de entrada para leer datos desde la URL.
             InputStream flujoIn = url.openStream();
+            // Mejora el rendimiento al leer datos en bloques.
             BufferedInputStream in = new BufferedInputStream(flujoIn);
+
             //url.getFile obtiene toda la ruta, sólo queremos el nombre del fichero
             String[] rutas = url.getFile().split("/");
             System.out.println("Nombre del fichero a descargar "+rutas[rutas.length - 1]);
 
+            //Escribir el Archivo en Disco-------------------------------------
+
             //Creamos el flujo para guardar el fichero
+            // Crea el archivo en disco
             FileOutputStream fileOutput = new FileOutputStream(rutas[rutas.length - 1]);
+            // Permite escribir datos en bloques para mayor eficiencia.
             BufferedOutputStream bufferedOutput = new BufferedOutputStream(fileOutput);
 
             // Bucle para leer de un fichero y escribir en el otro.
+            //Lee datos de la URL en bloques de 1000 bytes y los escribe en el archivo.
             byte[] array = new byte[1000];
             int leidos = in.read(array);
             while (leidos > 0) {
                 bufferedOutput.write(array, 0, leidos);
                 leidos = in.read(array);
             }
+
             //Cerramos
             in.close();
             bufferedOutput.close();
@@ -54,7 +64,6 @@ public class URLMuySimple {
 
 
             URL url2 = new URL("http://java.sun.com:80/tutorial/intro.html#DOWNLOADING");
-
 
             System.out.println("protocol = " + url2.getProtocol());
             System.out.println("host = " + url2.getHost());

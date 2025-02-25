@@ -12,11 +12,11 @@ import java.util.Map;
 public class Main {
     private static final String USER_AGENT = "Mozilla/5.0";
     /*CAMBIA ESTA URL*/
-    private static final String GET_URL = "http://localhost/ejemplo/actionGET.php?userName=mariajo";
+    private static final String GET_URL = "http://localhost/C:/Users/msi/IdeaProjects/PSPEjercicios2Trimestre/actionGET.php?userName=chai";
     /*CAMBIA ESTA URL*/
-    private static final String POST_URL = "http://localhost/ejemplo/actionPOST.php";
+    private static final String POST_URL = "http://localhost/C:/Users/msi/IdeaProjects/PSPEjercicios2TrimestrePSPEjercicios2Trimestre/actionPOST.php";
 
-    private static final String POST_PARAMS = "userName=mariajo";
+    private static final String POST_PARAMS = "userName=chai";
 
     public static void main(String[] args) {
 
@@ -28,7 +28,7 @@ public class Main {
             System.out.println("-------------------------------------");
             System.out.println("----------------POST------------------");
             System.out.println("-------------------------------------");
-            sendPOST(); //Ejemplo con POST
+           sendPOST(); //Ejemplo con POST
         } catch (IOException ex) {
             System.err.println(ex.getStackTrace());
         }
@@ -46,6 +46,7 @@ public class Main {
         for (Map.Entry<String, List<String>> header : con.getHeaderFields().entrySet()) {
             System.out.println(header.getKey() + "=" + header.getValue());
         }
+
         System.out.println("Imprimo la respuesta");
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));

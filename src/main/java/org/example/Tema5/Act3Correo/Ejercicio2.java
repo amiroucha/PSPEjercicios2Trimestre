@@ -1,4 +1,5 @@
 package org.example.Tema5.Act3Correo;
+
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -8,7 +9,17 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.activation.DataSource;
-public class Ejercicio2 {
+
+/**
+ * ****************************************************************************
+ * programa para enviar correo desde una cuenta de gmail.com por el puerto 465
+ * SMTP sobre el protocolo seguro SSL (tiene que ser seguro, porque ni Google
+ * ni ningún otro proveedor dejan enviar hoy día por el puerto 25)
+ *
+ * @author IMCG
+ */
+class Main {
+
     //cuenta de usuario en gmail.com
     private static final String cuentaUsuario = "redes@psp.local";
 
@@ -40,10 +51,10 @@ public class Ejercicio2 {
         //GMAIL --> smtp.gmail.com
         //local mira la ip con ip address
         //props.put("mail.smtp.host", "192.168.1.3");
-        props.put("mail.smtp.host", "172.10.0.117");
+        props.put("mail.smtp.host", "172.10.0.44");
 
         //identificación requerida
-        props.put("mail.smtp.auth", "true");
+        //props.put("mail.smtp.auth", "true");
 
         //Descomenta las siguientes líneas para enviar por SMTPS (SMTP sobre SSL)
 
@@ -103,7 +114,7 @@ public class Ejercicio2 {
             multipart.addBodyPart(textPart);
 
             BodyPart archivo = new MimeBodyPart();
-            String filename="./test.txt";
+            String filename="./pom.xml";
             String name="password.txt";
             DataSource source = new FileDataSource(filename);
             archivo.setDataHandler(new DataHandler(source));
@@ -117,7 +128,7 @@ public class Ejercicio2 {
             System.out.println("Enviado!");
 
         } catch (MessagingException e) {
-            System.err.println(e.getMessage());
+            throw new RuntimeException();
         }
     }
 

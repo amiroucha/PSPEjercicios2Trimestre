@@ -16,7 +16,7 @@ public class Main {
     private static final String FORMATOFICHERO = "^[a-zA-Z0-9_-]+\\.(txt|zip|png)$"; // Regex para nombres de archivo válidos
     private static final String FTP_SERVER = "localhost";
     private static final String FTP_USER = "chai";
-    private static final String FTP_PASS = "admin";
+    private static final String FTP_PASS = "1234";
     private static final String EMAIL_FROM = "pspchaima@gmail.com";
     private static final String EMAIL_TO = "1925046@alu.murciaeduca.es";
     private static final String EMAIL_PASSWORD = "akbr scda yohw jqsx";

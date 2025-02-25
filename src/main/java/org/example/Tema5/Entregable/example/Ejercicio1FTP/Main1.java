@@ -1,4 +1,4 @@
-package org.example.Tema5.Entregable.example.Ejercicio1;
+package org.example.Tema5.Entregable.example.Ejercicio1FTP;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;

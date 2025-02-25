@@ -34,3 +34,9 @@ feb 22, 2025 10:01:52 P. M. org.example.EjemploGlobal.Main main
 GRAVE: Error en la ejecución: 535-5.7.8 Username and Password not accepted. For more information, go to
 535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-38f6bfbe8efsm6543800f8f.46 - gsmtp
 
+feb 25, 2025 10:42:10 P. M. org.example.EjemploGlobal.Main main
+INFORMACIÓN: Archivo válido: BobEsponja.png
+feb 25, 2025 10:42:10 P. M. org.example.EjemploGlobal.Main downloadFromFTP
+GRAVE: No se pudo descargar el archivo desde FTP.
+feb 25, 2025 10:42:10 P. M. org.example.EjemploGlobal.Main main
+GRAVE: Error en la ejecución: Error al descargar archivo desde FTP.

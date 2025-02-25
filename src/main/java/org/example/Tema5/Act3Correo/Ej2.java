@@ -1,59 +1,36 @@
 package org.example.Tema5.Act3Correo;
 
-import java.util.Properties;
 import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.activation.DataSource;
+import java.util.Properties;
 
-/**
- * ****************************************************************************
- * programa para enviar correo desde una cuenta de gmail.com por el puerto 465
- * SMTP sobre el protocolo seguro SSL (tiene que ser seguro, porque ni Google
- * ni ningún otro proveedor dejan enviar hoy día por el puerto 25)
- *
- * @author IMCG
- */
-class Main {
+class Ej2 {
 
     //cuenta de usuario en gmail.com
     private static final String cuentaUsuario = "redes@psp.local";
 
-    //la contraseña que pones aquí no es la de tu correo, sino la que generas desde Gmail para que se conecte tu aplicación
-  /*Ve a tu cuenta de Google.
-  Selecciona Seguridad.
-  En "Iniciar sesión en Google", selecciona Verificación en dos pasos.
-  En la parte inferior de la página, selecciona Contraseñas de aplicación.
-  Introduce un nombre que te ayude a recordar dónde utilizarás la contraseña de aplicación.
-  Selecciona Generar.
-  Para introducir la contraseña de aplicación, sigue las instrucciones que aparecen en pantalla. La contraseña de aplicación es el código de 16 caracteres que se genera en tu dispositivo.
-  Selecciona Hecho.*/
     private static final String password = "redes";
     //dirección de correo del destinatario58
     private static final String mailDestinatario = "redes@psp.local";
     //redes@psp.local email del servidor de la máquina virtual
 
-    /**
-     ****************************************************************************
-     *
-     *
-     * @param args
-     */
     public static void main(String[] args) {
 
         //valora propiedades para construir la sesión con el servidor
         Properties props = new Properties();
         //servidor SMTP
         //GMAIL --> smtp.gmail.com
-        //local mira la ip con ip address
+        //local mira la ip con ip address / ip a
         //props.put("mail.smtp.host", "192.168.1.3");
-        props.put("mail.smtp.host", "172.10.0.44");
+        props.put("mail.smtp.host", "172.10.0.44");//la de la maquina virtual
 
-        //identificación requerida
+        //identificación requerida , esto no es necesario
         //props.put("mail.smtp.auth", "true");
 
         //Descomenta las siguientes líneas para enviar por SMTPS (SMTP sobre SSL)
@@ -77,7 +54,7 @@ class Main {
         //abre una nueva sesión contra el servidor basada en:
         //el usuario, la contraseña y las propiedades especificadas
         Session session = Session.getDefaultInstance(props,
-                new javax.mail.Authenticator() {
+                new Authenticator() {
 
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {

@@ -1,6 +1,7 @@
-package org.example.Tema5.Entregable.example.Ejercicio2;
+package org.example.Tema5.Entregable.example.Ejercicio2Email;
 
 import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.Scanner;
+import javax.mail.search.FlagTerm;
 
 
 
@@ -21,6 +23,7 @@ public class Main2 {
     private static final Properties properti = new Properties();
     private static String cuentaUsuario = "";
     private static String password = "";
+    private static Session session; // Sesión única para toda la aplicación
 
     public static void main(String[] args) {
         String opcion;
@@ -28,7 +31,6 @@ public class Main2 {
             menu();
             System.out.println("Elija una opcion del menu: ");
             opcion = entrada.nextLine();
-            //entrada.nextLine();
             switch (opcion) {
                 case "1":
                     leerCorreo();
@@ -48,10 +50,17 @@ public class Main2 {
     }
     private static void confProperties(){
         try {
-            properti.load(new FileInputStream("src/main/resources/configuracion.properties"));
+            properti.load(new FileInputStream("src/main/java/org/example/Tema5/Entregable/example/configuracion.properties"));
             cuentaUsuario = properti.getProperty("email");
             password = properti.getProperty("password2");
 
+            // Configura la sesión única
+            session = Session.getInstance(properti, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(cuentaUsuario, password);
+                }
+            });
         } catch (IOException e) {
             System.out.println("Error al leer el properties de configuracion : " + e.getMessage());
         }
@@ -65,7 +74,6 @@ public class Main2 {
     public static void leerCorreo() {
         try {
             confProperties();
-            Session session = Session.getDefaultInstance(properti);
 
             Store store = null; //protocolo es ”imaps”
             store = session.getStore("imaps");
@@ -73,24 +81,26 @@ public class Main2 {
 
             Folder inbox = store.getFolder("INBOX");
             inbox.open(Folder.READ_ONLY);
-            //recogemos los correos en una lusta
-            Message[] correosLista = inbox.getMessages();//consigue todos los mensajes
-            System.out.println("-------------Emails-------------");
-            boolean encontrado = false;
-            for (Message mensaje : correosLista) {
-                //Solo enseñamos los que no han sido leidos
-                if (!mensaje.isSet(Flags.Flag.SEEN)) {//en caso de no haber sido leidos
-                    System.out.println("Remitente del email: "+ Arrays.toString(mensaje.getFrom()));
-                    System.out.println("Asunto: "+mensaje.getSubject());
-                    System.out.println("Fecha de envío: "+mensaje.getSentDate());
-                    encontrado = true;
-                    System.out.println("---------------------------------------------------------------");
+
+            // Filtro para obtener solo correos NO LEÍDOS
+            FlagTerm filtroNoLeidos = new FlagTerm(new Flags(Flags.Flag.SEEN), false);
+            Message[] mensajesNoLeidos = inbox.search(filtroNoLeidos);
+
+            System.out.println("-------------------------------------------------");
+            for (Message message : mensajesNoLeidos) {
+                if (!message.isSet(Flags.Flag.SEEN)) {// Solo mostrar correos no leídos
+                    System.out.println("Remitente: " + Arrays.toString(message.getFrom()));
+                    System.out.println("Asunto: " + message.getSubject());
+                    System.out.println("Fecha: " + message.getSentDate());
+                    System.out.println("-------------------------------------------------");
                 }
             }
-            if(!encontrado)System.out.println("No hay emails sin leer");
+            inbox.close(false);
+            store.close();
 
         } catch (MessagingException e) {
             System.out.println("Error al leer el email : " + e.getMessage());
+            throw new RuntimeException();
         }
 
 
@@ -98,14 +108,6 @@ public class Main2 {
     public static void enviarCorreo() {
         try {
             confProperties();
-            Session session = Session.getDefaultInstance(properti,
-                    new Authenticator() {
-                        @Override
-                        protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication(cuentaUsuario, password);
-                        }
-                    });
-            MimeMessage message = new MimeMessage(session);
 
             System.out.println("Introduce el destinatario");
             String destinatario = entrada.nextLine();
@@ -116,28 +118,44 @@ public class Main2 {
             System.out.println("Introduce el nombre del fichero");
             String ficheroRuta = entrada.nextLine();
 
+            // Crear mensaje de correo----------------------------------
+            MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(cuentaUsuario));
-            //destinatario
+            //destinatario oculto
             message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(cuentaUsuario));
+            //destinatario
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario));
             //asunto
             message.setSubject(asunto);
 
-            //para la parte del mensaje
+
+            //cuerpo del mensaje------------------------------------------
             MimeBodyPart messageBodyPart = new MimeBodyPart();
-            //cuerpo del mensaje
             messageBodyPart.setText(cuerpo);
 
-            //fichero
+
+            //fichero----------------------------------------------------------
             //Fichero en la ruta de mi proyecto
             MimeBodyPart adjuntoMime = new MimeBodyPart();
-            FileDataSource source = new FileDataSource(ficheroRuta);
+            DataSource source = new FileDataSource(ficheroRuta);
             adjuntoMime.setDataHandler(new DataHandler(source));
             adjuntoMime.setFileName(new File(ficheroRuta).getName());
+            //fichero------
+            System.out.print("Ruta del otro archivo adjunto: ");
+            String ficheroRuta2 = entrada.nextLine();
+            // Se adjunta el archivo
+            MimeBodyPart adjuntoMime2 = new MimeBodyPart();
+            DataSource source2 = new FileDataSource(ficheroRuta2);
+            adjuntoMime2.setDataHandler(new DataHandler(source2));
+            adjuntoMime2.setFileName(new File(ficheroRuta2).getName());
 
+
+            // Combinar cuerpo y adjunto en un solo mensaje---------------------
             Multipart correoMultipart = new MimeMultipart();
             correoMultipart.addBodyPart(messageBodyPart);
             correoMultipart.addBodyPart(adjuntoMime);
+            correoMultipart.addBodyPart(adjuntoMime2);
+
             //asigna el contenido al mensaje
             message.setContent(correoMultipart);
 
@@ -152,3 +170,22 @@ public class Main2 {
 
     }
 }
+
+/* Cargas todos los mensajes y luego compruebas si son no leídos.
+//recogemos los correos en una lista
+Message[] correosLista = inbox.getMessages();//consigue todos los mensajes
+            System.out.println("-------------Emails-------------");
+boolean encontrado = false;
+            for (Message mensaje : correosLista) {
+        //Solo enseñamos los que no han sido leidos
+        if (!mensaje.isSet(Flags.Flag.SEEN)) {//en caso de no haber sido leidos
+        System.out.println("Remitente del email: "+ Arrays.toString(mensaje.getFrom()));
+        System.out.println("Asunto: "+mensaje.getSubject());
+        System.out.println("Fecha de envío: "+mensaje.getSentDate());
+encontrado = true;
+        System.out.println("---------------------------------------------------------------");
+                }
+                        }
+                        if(!encontrado)System.out.println("No hay emails sin leer");
+
+*/

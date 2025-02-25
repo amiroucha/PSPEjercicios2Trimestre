@@ -117,13 +117,14 @@ public class Main1 {
             FTPFile[] archivos = clienteFTP.listFiles();
             System.out.println("Contenido del directorio:");
             for (FTPFile ftpFile : archivos) {
-                System.out.println(ftpFile.getName());
+                System.out.println(ftpFile); //con el .getname me saca solo el nombre
             }
             // Se imprime una única respuesta del servidor
             System.out.println("Respuesta servidor: " + clienteFTP.getReplyString());
         } catch (IOException e) {
             System.err.println("Error al mostrar el directorio: " + e.getMessage());
         }
+
     }
 
     // Ejercicio 2: Entrar a un directorio existente (sin crearlo si no existe)

@@ -12,16 +12,16 @@ public class Main {
     //flujo de salida para la escritura de datos en un fichero
     private static FileOutputStream ficheroObtenido;
     //URL del servidor ftp.rediris.es, podrías probar con un servidor que tengas instalado en tu máquina
-    private static String servidorURL = "ftp.rediris.es";
+    private static String servidorURL = "localhost";
     //ruta relativa (en Servidor FTP) de la carpeta que contiene el fichero que vamos a descargar
     private static String rutaFichero = "debian";
     //nombre del fichero (aunque carece de extensión, se trata de un fichero de
     //texto que puede abrise con el bloc de notas)
-    private static String nombreFichero = "README";
+    private static String nombreFichero = "chaimatexto.txt";
     //usuario
-    private static String usuario = "anonymous";
+    private static String usuario = "chai";
     //contraseña
-    private static String password = "";
+    private static String password = "1234";
     //array de carpetas disponibles
     private static String[] nombreCarpeta;
 
@@ -38,7 +38,7 @@ public class Main {
             //creación del objeto cliente FTP
             clienteFTP = new FTPClient();
             //conexión del cliente al servidor FTP
-            clienteFTP.connect("ftp.rediris.es");
+            clienteFTP.connect("localhost");
 
             //omprobación de la conexión
             reply = clienteFTP.getReplyCode(); //Todo lo que hacemos con el servidor FTP devuelve una respuesta

@@ -16,7 +16,7 @@ import java.util.Properties;
 import java.util.Scanner;
 import javax.mail.search.FlagTerm;
 
-
+//funcionaa bien, esta corregido
 
 public class Main2 {
     private static final Scanner entrada = new Scanner(System.in);
@@ -132,7 +132,6 @@ public class Main2 {
             //cuerpo del mensaje------------------------------------------
             MimeBodyPart messageBodyPart = new MimeBodyPart();
             messageBodyPart.setText(cuerpo);
-
 
             //fichero----------------------------------------------------------
             //Fichero en la ruta de mi proyecto

@@ -11,7 +11,8 @@ import java.net.URL;
 public class URLMuySimple {
     /**
      *
-     * Leemos un fichero del ftp de la rediris y lo descargamos http://ftp.rediris.es/sites/apache.org/favicon.ico
+     * Leemos un fichero del ftp de la rediris y
+     * lo descargamos http://ftp.rediris.es/sites/apache.org/favicon.ico
      * @param args no hay argumentos
      */
     public static void main(String[] args) {

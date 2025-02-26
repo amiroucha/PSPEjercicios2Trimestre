@@ -9,8 +9,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
-
-class Ej2 {
+//la maquina virtual
+class Ej2Virtual {
 
     //cuenta de usuario en gmail.com
     private static final String cuentaUsuario = "redes@psp.local";

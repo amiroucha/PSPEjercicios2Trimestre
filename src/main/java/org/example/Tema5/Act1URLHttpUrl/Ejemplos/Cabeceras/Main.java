@@ -18,7 +18,7 @@ public class Main {
         int leido, contentLength;
         char[] bufChar;
         byte[] bufByte;
-        //
+        //http://ftp.rediris.es/sites/apache.org/favicon.ico
         try {
             //crea objeto url
             URL url = new URL(cadenaURL);

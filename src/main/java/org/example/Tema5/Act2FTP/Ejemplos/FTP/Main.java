@@ -14,7 +14,7 @@ public class Main {
     //URL del servidor ftp.rediris.es, podrías probar con un servidor que tengas instalado en tu máquina
     private static String servidorURL = "localhost";
     //ruta relativa (en Servidor FTP) de la carpeta que contiene el fichero que vamos a descargar
-    private static String rutaFichero = "debian";
+    private static String rutaFichero = "/";
     //nombre del fichero (aunque carece de extensión, se trata de un fichero de
     //texto que puede abrise con el bloc de notas)
     private static String nombreFichero = "chaimatexto.txt";
@@ -48,6 +48,7 @@ public class Main {
                 clienteFTP.login(usuario, password);
                 //Activar el modo pasivo para no tener problemas con el Firewall de Windows
                 clienteFTP.enterLocalPassiveMode();
+
                 //lista las carpetas de primer nivel del servidor FTP
                 System.out.println("Carpetas disponibles en el Servidor:");
                 nombreCarpeta = clienteFTP.listNames();

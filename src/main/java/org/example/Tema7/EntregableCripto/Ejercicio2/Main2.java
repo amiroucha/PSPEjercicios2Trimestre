@@ -1,4 +1,4 @@
-package org.example.Tema7.Entregable.Ejercicio2;
+package org.example.Tema7.EntregableCripto.Ejercicio2;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

@@ -5,7 +5,12 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 import java.io.IOException;
 import java.util.Scanner;
-
+/*
+*Programa un cliente FTP que se conecte a tu servidor FTP
+* que te pregunte por un directorio, cambies al mismo y listes su
+* contenido. Si el directorio no existe crealo e informa al
+* usuario de ello. Imprime siempre la respuesta del servidor (código más texto).
+* */
 public class FTPCliente {
     //objeto de la clase FTPClient
     private static FTPClient clienteFTP;

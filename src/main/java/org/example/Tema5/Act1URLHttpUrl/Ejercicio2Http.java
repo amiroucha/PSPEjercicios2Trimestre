@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 //HTTP URL CONNECTION . GET . POST
-public class Ejercicio2 {
+public class Ejercicio2Http {
 
     public class Main {
         private static final String USER_AGENT = "Mozilla/5.0";

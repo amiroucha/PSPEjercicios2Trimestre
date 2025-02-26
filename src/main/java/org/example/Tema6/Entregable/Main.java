@@ -21,7 +21,7 @@ public class Main {
         //expresion de la primera linea
         String expresionLin1 = "97([89])[0-9]{10}";
         //expresion de la segunda linea
-        String expresionLin2 = "@[a-zA-Z]\\w{1,10}";
+        String expresionLin2 = "@[a-zA-Z][a-zA-Z_\\-0-9]{1,10}";
         //expresion de la tercera linea
         String expresionLin3 = "(AABB|aabb)[a-zA-Z\\d]{5}\\d";
         String linea;

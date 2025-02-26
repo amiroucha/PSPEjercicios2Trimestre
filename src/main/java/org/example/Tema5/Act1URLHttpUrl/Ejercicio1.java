@@ -4,10 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -15,56 +12,47 @@ import java.util.Scanner;
 public class Ejercicio1 {
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
-        System.out.println("Introduce un nombre de dominio (ejemplo: google.com):");
-        String dominio = leer.nextLine();
+        System.out.println("Introduce una URL (ejemplo: https://google.com):");
+        String urlUsuario = leer.nextLine();
 
         try {
+            // Construcción de la URL
+            URL url = new URL(urlUsuario);
+
             // Obtener la dirección IP del dominio
-            InetAddress objetoDominio = InetAddress.getByName(dominio);
-            System.out.println("IP del dominio " + dominio + " : " + objetoDominio.getHostAddress());
+            InetAddress objetoDominio = InetAddress.getByName(url.getHost());
+            System.out.println("IP del dominio " + url.getHost() + " : " + objetoDominio.getHostAddress());
 
             // Comprobar si es alcanzable
             if (objetoDominio.isReachable(5000))
-                System.out.println("El dominio " + dominio + " es alcanzable.");
+                System.out.println("El dominio " + url.getHost() + " es alcanzable.");
             else
-                System.out.println("El dominio " + dominio + " NO es alcanzable.");
+                System.out.println("El dominio " + url.getHost() + " NO es alcanzable.");
 
-            // Construcción correcta de la URL
-            URL url = new URL("https://" + dominio);
             System.out.println("\n------ Información de la URL ------");
             System.out.println("Protocolo = " + url.getProtocol());
             System.out.println("Host = " + url.getHost());
-            System.out.println("Puerto = " + url.getPort());
-            System.out.println("Puerto por defecto = " + url.getDefaultPort());
+            int puerto = (url.getPort() != -1) ? url.getPort() : url.getDefaultPort();
+            System.out.println("Puerto = " + puerto);
             System.out.println("Fichero = " + url.getFile());
             System.out.println("Referencia = " + url.getRef());
 
             System.out.println("\n------ Información de las cabeceras ------");
 
             // Abrir conexión con la URL
-            URLConnection conexion = url.openConnection();
+            HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+            conexion.setInstanceFollowRedirects(true);
+            conexion.setRequestProperty("User-Agent", "Mozilla/5.0");
             conexion.connect();
 
             // Imprimir información de cabeceras
-            System.out.println("Content Type: " + conexion.getContentType());
-            System.out.println("Content Length: " + conexion.getContentLength());
-            System.out.println("Last-Modified: " + conexion.getLastModified());
-            System.out.println("Content Encoding: " + conexion.getContentEncoding());
-            System.out.println("Expires: " + conexion.getExpiration());
-            System.out.println("If Modified Since: " + conexion.getIfModifiedSince());
-
-            // Obtener y mostrar todas las cabeceras
             for (Map.Entry<String, List<String>> header : conexion.getHeaderFields().entrySet()) {
-                System.out.println(header.getKey() + " = " + header.getValue());
+                System.out.println(" CABECERA " + header.getKey() + " = " + header.getValue());
             }
-
-            // Obtener cabeceras específicas
-            System.out.println("Cache-Control: " + conexion.getHeaderField("Cache-Control"));
-            System.out.println("Server: " + conexion.getHeaderField("Server"));
 
             // Si el contenido es una imagen, descargarla
             if (conexion.getContentType() != null && conexion.getContentType().startsWith("image/")) {
-                descargarImagen(url, dominio);
+                descargarImagen(url, url.getHost());
             }
 
         } catch (MalformedURLException e) {
@@ -77,16 +65,35 @@ public class Ejercicio1 {
     private static void descargarImagen(URL url, String dominio) {
         System.out.println("\nDetectada imagen. Descargando...");
 
-        try (InputStream in = url.openStream();
-             OutputStream out = new FileOutputStream(dominio + ".jpg")) {
+        try {
+            HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+            conexion.setInstanceFollowRedirects(true);
+            conexion.setRequestProperty("User-Agent", "Mozilla/5.0");
+            conexion.connect();
 
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = in.read(buffer)) != -1) {
-                out.write(buffer, 0, bytesRead);
+            if (conexion.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                String contentType = conexion.getContentType();
+                String extension = "jpg"; // Valor por defecto
+                if (contentType != null && contentType.startsWith("image/")) {
+                    extension = contentType.substring(6);
+                }
+                String nombreArchivo = dominio.replaceAll("[^a-zA-Z0-9]", "_") + "." + extension;
+
+                try (InputStream in = conexion.getInputStream();
+                     OutputStream out = new FileOutputStream(nombreArchivo)) {
+
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    while ((bytesRead = in.read(buffer)) != -1) {
+                        out.write(buffer, 0, bytesRead);
+                    }
+
+                    System.out.println("Imagen descargada como " + nombreArchivo);
+                }
+            } else {
+                System.err.println("Error al conectar: " + conexion.getResponseCode());
             }
 
-            System.out.println("Imagen descargada como " + dominio + ".jpg");
         } catch (IOException e) {
             System.err.println("Error al descargar la imagen: " + e.getMessage());
         }
